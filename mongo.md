@@ -41,16 +41,28 @@
     db.usuarios.insert({ nome: "Fabrizio Mongo SH", email : "sh@sh.com" })
 ```
 
+- Inserir vários usuários:
+
+```
+    db.usuarios.insert(
+        [
+            { nome: "Fabrizio Mongo SH 1", email : "sh1@sh.com" },
+            { nome: "Fabrizio Mongo SH 2", email : "sh2@sh.com" },
+            { nome: "Fabrizio Mongo SH 3", email : "sh3@sh.com" }
+        ]  
+    )
+```
+
 - procurar um usuário pelo nome
 
 ```
-    db.usuarios.find({nome: "Fabrizio"})
+    db.usuarios.find({nome: "Fabrizio Mongo SH"})
 ```
 
 - procurar um usuário pelo nome com letra b
 
 ```
-    db.usuarios.find({nome: { $regex: /a/ } })
+    db.usuarios.find({nome: { $regex: /SH/ } })
 ```
 
 - procurar um usuário pelo salário (usando operador maior que)
@@ -66,10 +78,18 @@
 ```
 
 
-- update (apenas um registro)
+- update apenas um registro
 
 ```
     db.usuarios.updateOne( {nome: "Fabrizio Mongo SH"}, { $set: { email: "alterado@g.com"}  } )
+```
+
+- update vários registros
+
+Alterar todos os documentos que contenham SH
+
+```
+    db.usuarios.updateMany( {nome: /SH/}, { $set: { email: "alterado@g.com"}  } )
 ```
 
 - delete (apenas um registro)
