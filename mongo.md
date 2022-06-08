@@ -99,4 +99,10 @@ Alterar todos os documentos que contenham SH
 ```
 
 
+# No Spring (camada repository) : 
 
+@Query("{'nome' : ?0 }")
+List<T> getByNome(  String nome );
+
+@Query("{'nome' : :#{#nome} }")
+List<T> getByNome( @Param("nome") String nome );
