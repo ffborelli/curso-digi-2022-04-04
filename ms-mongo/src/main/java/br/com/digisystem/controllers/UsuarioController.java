@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.digisystem.dtos.UsuarioDTO;
 import br.com.digisystem.entities.UsuarioEntity;
 import br.com.digisystem.services.UsuarioService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 public class UsuarioController {
@@ -31,6 +34,12 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@GetMapping("usuarios")
+	@ApiOperation(value = "Listar todos os usuários")
+	@ApiResponses (value =  {
+			@ApiResponse(code=200, message = "Sucesso"),
+			@ApiResponse(code=400, message = "Bad Request")
+			
+	})
 	public ResponseEntity<List<UsuarioDTO>> getAll() {
 //		System.out.println("primeiro usuário");
 //		return "um texto 2";
