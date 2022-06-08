@@ -123,12 +123,12 @@ public class UsuarioService {
 		
 	}
 	
-//	public List<UsuarioEntity> getByNome(String nome){
-//		// return this.usuarioRepository.findByNomeContains(nome);
-//		// return this.usuarioRepository.searchByNome(nome);	
-//		return this.usuarioRepository.searchByNomeNativo(nome);	
-//		
-//	}
+	public List<UsuarioEntity> getByNome(String nome){
+		// return this.usuarioRepository.findByNomeContains(nome);
+		// return this.usuarioRepository.searchByNome(nome);	
+		return this.usuarioRepository.searchByNomeNativo(nome);	
+		
+	}
 //	@Transactional
 //	public void updateUsuario(int id, String nome) {
 //		this.usuarioRepository.updateUsuario(id, nome);

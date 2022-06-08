@@ -143,19 +143,19 @@ public class UsuarioController {
 		return ResponseEntity.ok().build();
 	}
 	
-//	@GetMapping("usuarios/get-by-nome/{nome}")
-//	public ResponseEntity<List<UsuarioDTO>> getByNome(@PathVariable String nome){
-//		
-//		List<UsuarioEntity> lista = this.usuarioService.getByNome(nome);
-//		
-//		List<UsuarioDTO> listaDTO = new ArrayList<>();
-//		
-//		for (int i = 0; i < lista.size(); i++) {
-//			listaDTO.add( lista.get(i).toDTO() );
-//		}
-//				
-//		return ResponseEntity.ok().body( listaDTO );
-//	}
+	@GetMapping("usuarios/get-by-nome/{nome}")
+	public ResponseEntity<List<UsuarioDTO>> getByNome(@PathVariable String nome){
+		
+		List<UsuarioEntity> lista = this.usuarioService.getByNome(nome);
+		
+		List<UsuarioDTO> listaDTO = new ArrayList<>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			listaDTO.add( lista.get(i).toDTO() );
+		}
+				
+		return ResponseEntity.ok().body( listaDTO );
+	}
 //	
 //	@PatchMapping("usuarios/update/{id}")
 //	public ResponseEntity<Void> updateUsuario(@PathVariable int id, 
