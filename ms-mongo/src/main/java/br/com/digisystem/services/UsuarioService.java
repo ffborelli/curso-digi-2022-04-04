@@ -125,8 +125,8 @@ public class UsuarioService {
 	
 	public List<UsuarioEntity> getByNome(String nome){
 		// return this.usuarioRepository.findByNomeContains(nome);
-		// return this.usuarioRepository.searchByNome(nome);	
-		return this.usuarioRepository.searchByNomeNativo(nome);	
+		return this.usuarioRepository.searchByNome(nome);	
+		// return this.usuarioRepository.searchByNomeNativo(nome);	
 		
 	}
 //	@Transactional
