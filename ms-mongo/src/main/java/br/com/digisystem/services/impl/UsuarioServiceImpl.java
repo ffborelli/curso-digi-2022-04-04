@@ -101,19 +101,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		// verificar se existe o registro no banco de dados
 		
-		Optional<UsuarioEntity> usuarioOptional = this.usuarioRepository.findById(id);
+		UsuarioEntity usuarioUpdate = 
+					this.usuarioRepository.findById(id)
+						.orElseThrow( () -> new ObjNotFoundException("ID " + id +  " não localizado") );
 		
-		if (usuarioOptional.isPresent()) {
-			UsuarioEntity usuarioUpdate = usuarioOptional.get();
+		//if (usuarioOptional.isPresent()) {
+			//UsuarioEntity usuarioUpdate = usuarioOptional.get();
 			
 			usuarioUpdate.setEmail( usuario.getEmail() );
 			usuarioUpdate.setNome( usuario.getNome() );
 			
 			return this.usuarioRepository.save(usuarioUpdate);
-		}
-		else {
-			return null;
-		}
+//		}
+//		else {
+//			return null;
+//		}
 	}
 	
 	public void delete(String id) {
