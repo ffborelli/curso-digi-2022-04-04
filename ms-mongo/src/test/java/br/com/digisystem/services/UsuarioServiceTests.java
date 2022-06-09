@@ -170,9 +170,9 @@ public class UsuarioServiceTests {
 		
 		// executar o teste
 		
-		UsuarioEntity usuarioAlterado = usuarioService.update(id, null);
-		
-		assertThat( usuarioAlterado ).isNull();
+		/*
+		 * chama o getOne para verificar se o retono é do tipo ObjNotFoundException*/
+	 	assertThrows(ObjNotFoundException.class, ()-> usuarioService.update(id, null) );
 		
 	}
 	
