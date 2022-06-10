@@ -5,11 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.digisystem.entities.UsuarioEntity;
@@ -22,8 +23,18 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+//	@Autowired
+//	private TestEntityManager testEntityManager;
+	
 	@Autowired
-	private TestEntityManager testEntityManager;
+	private MongoTemplate mongoTemplate;
+	
+	@BeforeEach
+	void beforeEachTest(){
+		mongoTemplate.dropCollection(UsuarioEntity.class);
+		mongoTemplate.createCollection(UsuarioEntity.class);
+		System.out.println("beforeEach");
+	}
 	
 	@Test
 	void findAllTests() {
@@ -35,7 +46,8 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 		UsuarioEntity usuarioEntity = createUsuarioValid();
 		
 		// Insiro o objeto no banco H2
-		testEntityManager.persist(usuarioEntity);
+		//testEntityManager.persist(usuarioEntity);
+		mongoTemplate.insert(usuarioEntity);
 		
 		//realizar o teste
 		
@@ -50,7 +62,8 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 		UsuarioEntity usuarioEntity = createUsuarioValid();
 		
 		// Insiro o objeto no banco H2
-		testEntityManager.persist(usuarioEntity);
+		//testEntityManager.persist(usuarioEntity);
+		mongoTemplate.insert(usuarioEntity);
 		
 		//System.out.println(usuarioEntity);
 		
@@ -91,7 +104,8 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 		
 		// inserir registro no banco
 		// Insiro o objeto no banco H2
-		testEntityManager.persist(usuarioEntity);
+		//testEntityManager.persist(usuarioEntity);
+		mongoTemplate.insert(usuarioEntity);
 		
 		// execução do teste
 		usuarioRepository.deleteById(usuarioEntity.getId());
@@ -113,7 +127,8 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 		
 		// inserir registro no banco
 		// Insiro o objeto no banco H2
-		testEntityManager.persist(usuarioEntity);
+		//testEntityManager.persist(usuarioEntity);
+		mongoTemplate.insert(usuarioEntity);
 		
 		// execução do teste
 		List<UsuarioEntity> lista = usuarioRepository
@@ -130,7 +145,8 @@ public class UsuarioRepositoryTests extends UsuarioUtil {
 		
 		// inserir registro no banco
 		// Insiro o objeto no banco H2
-		testEntityManager.persist(usuarioEntity);
+		//testEntityManager.persist(usuarioEntity);
+		mongoTemplate.insert(usuarioEntity);
 		
 		// execução do teste
 		List<UsuarioEntity> lista = usuarioRepository
