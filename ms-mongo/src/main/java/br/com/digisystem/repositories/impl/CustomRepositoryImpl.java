@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import br.com.digisystem.entities.UsuarioEntity;
 import br.com.digisystem.repositories.CustomRepository;
 
-@Primary
+//@Primary
 @Repository
 public class CustomRepositoryImpl implements CustomRepository {
 
