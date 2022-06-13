@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import br.com.digisystem.entities.UsuarioEntity;
 import br.com.digisystem.repositories.impl.CustomRepositoryImpl;
 import br.com.digisystem.utils.UsuarioUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /*
 	@Import feature for tests was primarily added to allow additional 
@@ -33,6 +34,7 @@ import br.com.digisystem.utils.UsuarioUtil;
 @DataMongoTest
 @Import(CustomRepositoryImpl.class)
 @ExtendWith(SpringExtension.class)
+@Slf4j
 public class CustomRepositoryTests extends UsuarioUtil{
 	
 	@Autowired
@@ -51,7 +53,8 @@ public class CustomRepositoryTests extends UsuarioUtil{
 	void beforeEachTest(){
 		mongoTemplate.dropCollection(UsuarioEntity.class);
 		mongoTemplate.createCollection(UsuarioEntity.class);
-		System.out.println("beforeEach");
+		//System.out.println("beforeEach");
+		log.info("beforeEach");
 	}
 	
 	

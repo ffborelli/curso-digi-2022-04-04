@@ -1,7 +1,6 @@
 package br.com.digisystem.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +10,10 @@ import br.com.digisystem.exceptions.ObjNotFoundException;
 import br.com.digisystem.repositories.CustomRepository;
 import br.com.digisystem.repositories.UsuarioRepository;
 import br.com.digisystem.services.UsuarioService;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Autowired
@@ -125,8 +126,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 //				this.listaUsuario.remove(i);
 //			}
 //		}
-		
-		this.usuarioRepository.deleteById(id);
+		try {
+			this.usuarioRepository.deleteById(id);
+		}
+		catch (Exception e) {
+			log.error("Erro ao deletar usuário com ID : " + id + ". Erro: " + e.getMessage() );
+		}
 		
 	}
 	
