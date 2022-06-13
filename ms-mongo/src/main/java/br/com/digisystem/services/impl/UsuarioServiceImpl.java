@@ -3,6 +3,8 @@ package br.com.digisystem.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.digisystem.entities.UsuarioEntity;
@@ -144,5 +146,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	public UsuarioEntity updateUsuario(String id, String nome) {
 		return this.customRepository.updateUsuario(id, nome);
+	}
+	
+	public Page<UsuarioEntity> getAllPagination(int page, int limit){
+		
+		PageRequest pageRequest = PageRequest.of(page, limit);
+		
+		Page<UsuarioEntity> paginado = usuarioRepository.findAll( pageRequest );
+		
+		return paginado;
 	}
 }

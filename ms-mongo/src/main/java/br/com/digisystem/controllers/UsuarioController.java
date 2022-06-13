@@ -2,11 +2,13 @@ package br.com.digisystem.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -180,10 +182,25 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("usuarios/pagination")
-	public void getAllPagination(
+	public ResponseEntity<Page<UsuarioDTO>> getAllPagination(
 			@RequestParam ( name= "page", defaultValue = "0" ) int page,
 			@RequestParam ( name= "limit", defaultValue = "10" ) int limit
 	) {
 		log.info("page = {}, limit = {}", page, limit);
+		
+		Page<UsuarioEntity> paginado = usuarioService.getAllPagination(page, limit);
+		
+		// como converter um Page<UsuarioEntity> para Page<UsuarioDTO>
+		
+		Page<UsuarioDTO> pageDTO = paginado.map(
+					new Function <UsuarioEntity, UsuarioDTO> () {
+						
+						public UsuarioDTO apply(UsuarioEntity entity) {
+							return entity.toDTO();
+						}
+					}
+				);
+		
+		return ResponseEntity.ok().body( pageDTO );
 	}
 }
