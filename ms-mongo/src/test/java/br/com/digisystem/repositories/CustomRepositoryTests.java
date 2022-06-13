@@ -17,6 +17,19 @@ import br.com.digisystem.entities.UsuarioEntity;
 import br.com.digisystem.repositories.impl.CustomRepositoryImpl;
 import br.com.digisystem.utils.UsuarioUtil;
 
+/*
+	@Import feature for tests was primarily added to allow additional 
+		beans to be registered easily
+	@Import é uma funcionalidade de teste que permite adicionar BEANS
+	para serem resgistrados facilmente. No caso do CustomRepositoryTests,
+	como ele não herda a MongoRepository, então devemos dizer quais
+	Beans (objetos a serem gerenciados pelo Spring) devem ser usados. 
+	
+	As ferramentas de teste unitário precisam "saber" quais objetos 
+	devem ser gerenciados (Bean). 
+			
+	Bean são objetos que vão ser gerenciados pelo Spring 
+*/
 @DataMongoTest
 @Import(CustomRepositoryImpl.class)
 @ExtendWith(SpringExtension.class)
