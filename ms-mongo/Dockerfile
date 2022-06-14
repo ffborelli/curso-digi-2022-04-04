@@ -31,7 +31,7 @@ ENTRYPOINT echo JAVA_OPTS=$JAVA_OPTS && java -jar /app/app.jar
 # download WSL
 # https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
 
-# instalar WSL
+# instalar WSL e reiniciar computador
 
 # download Docker Desktop
 # https://www.docker.com/products/docker-desktop/
